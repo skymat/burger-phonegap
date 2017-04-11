@@ -5,7 +5,9 @@
     versionCode = "10"
     version     = "1.0.0" >
    
+   <plugin name="cordova-plugin-whitelist" source="npm"/>
  <access origin="*"/>
+ 
 <!-- versionCode is optional and Android only -->
 
   <name>Appli Test</name>
