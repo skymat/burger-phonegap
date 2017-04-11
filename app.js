@@ -14,7 +14,8 @@ class BasketElement extends React.Component {
   
   render() {
     return (
-      <div>{this.props.product.name}  {this.props.index} <i index={this.props.index} onClick={this.deleteClick} className="fa fa-times-circle" aria-hidden="true"></i></div>
+      <li className="table-view-cell"><div>{this.props.product.name}  {this.props.index}   <i index={this.props.index} onClick={this.deleteClick} className="fa fa-times-circle" aria-hidden="true"></i></div></li>
+      
       );
   }
 }
@@ -40,16 +41,18 @@ class Card extends React.Component {
     }
     return (
       <div>
-      <header>
-      Panier ({this.props.productSelected.length})  - Total : {total} €   
-      </header>
+        <header className="bar bar-nav">
+               <h1 className="title">Panier ({this.props.productSelected.length})  - Total : {total} €</h1>
+        </header>
       <p>
+        <ul className="table-view">
       {this.props.productSelected.map(function(product, index){
       return <BasketElement index={index}
         product={product} 
         deleteClick={this.deleteClick}
       />;
-      }, this)}      
+      }, this)}   
+      </ul>   
       </p>
       </div>
     );
@@ -78,13 +81,18 @@ class ProductRow extends React.Component {
   render() {
 
     return (
-      <li onClick={this.handleClick}>
-      <img src={this.props.product.image} />
-      <h3>{this.props.product.name}</h3>
-      <p>{this.props.product.desc}</p>
-      <span>{this.props.product.price}</span>
-      <span>({this.state.quantity})</span>
-      </li>
+
+  <li className="table-view-cell media" onClick={this.handleClick}>
+    <a className="navigate-right">
+      <img className="media-object pull-left" src={this.props.product.image}/>
+      <div className="media-body">
+        {this.props.product.name}
+        <p>{this.props.product.desc}</p>
+          <span>{this.props.product.price}</span>
+          <span>({this.state.quantity})</span>
+      </div>
+    </a>
+  </li>
     );
   }
 }
@@ -101,7 +109,7 @@ class ProductTable extends React.Component {
     return (
       <div>
       <h3>{this.props.title}</h3>
-      <ul>
+      <ul className="table-view">
       {this.props.products.map(function(product, index){
        return <ProductRow index={index}
               product={product} 
